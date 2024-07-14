@@ -1,0 +1,87 @@
+-- Get GUI elements
+local gui = script.Parent
+
+-- Create title TextLabel
+local title = Instance.new("TextLabel")
+title.Name = "Title"
+title.Parent = gui
+title.AnchorPoint = Vector2.new(0.5, 1)
+title.Position = UDim2.new(0.5, 0, 0, 0)  -- Top-center position
+title.Size = UDim2.new(0, 200, 0, 30)     -- Adjust size as needed
+title.BackgroundTransparency = 1
+title.Text = "EdrianScripts"
+title.TextColor3 = Color3.fromRGB(0, 255, 0)  -- Green color
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 18
+title.Visible = true  -- Ensure it's visible
+
+-- Get other GUI elements
+local hitboxCheckbox = gui.Hitbox
+local speedCheckbox = gui.Speed
+local noCooldownCheckbox = gui.NoCooldown
+local closeButton = gui.CloseButton
+local icon = gui.Icon
+
+-- Variables to track checkbox states
+local hitboxEnabled = false
+local speedEnabled = false
+local noCooldownEnabled = false
+
+-- Function to toggle checkbox state and functionality
+local function toggleCheckbox(checkbox, variable)
+    checkbox.MouseButton1Click:Connect(function()
+        variable = not variable
+        checkbox.Checked = variable
+        -- Implement functionality based on checkbox
+        if checkbox == hitboxCheckbox then
+            -- Toggle hitbox functionality
+            if variable then
+                -- Enable hitbox code (replace with your implementation)
+                print("Hitbox enabled")
+            else
+                -- Disable hitbox code (replace with your implementation)
+                print("Hitbox disabled")
+            end
+        elseif checkbox == speedCheckbox then
+            -- Toggle speed functionality
+            if variable then
+                -- Increase player speed (replace with your implementation)
+                print("Speed set to 30")
+            else
+                -- Reset player speed to default (replace with your implementation)
+                print("Speed reset")
+            end
+        elseif checkbox == noCooldownCheckbox then
+            -- Toggle no cooldown functionality
+            if variable then
+                -- Enable no cooldown for item (replace with your implementation)
+                print("No cooldown enabled")
+            else
+                -- Disable no cooldown for item (replace with your implementation)
+                print("No cooldown disabled")
+            end
+        end
+    end)
+end
+
+-- Toggle checkboxes
+toggleCheckbox(hitboxCheckbox, hitboxEnabled)
+toggleCheckbox(speedCheckbox, speedEnabled)
+toggleCheckbox(noCooldownCheckbox, noCooldownEnabled)
+
+-- Close button functionality
+closeButton.MouseButton1Click:Connect(function()
+    gui.Enabled = false  -- Hide the GUI
+end)
+
+-- Icon functionality (show/hide GUI)
+icon.MouseButton1Click:Connect(function()
+    gui.Enabled = not gui.Enabled  -- Toggle GUI visibility
+end)
+
+-- Ensure the icon remains visible
+-- This assumes the icon visibility is handled separately from the main GUI visibility
+-- For example, set it visible when the player is added
+game.Players.PlayerAdded:Connect(function(player)
+    icon.Visible = true
+end)
